@@ -156,7 +156,7 @@ Highlights repeated requests to `/joomla/agent.php` from IP **23.22.63.114**, co
 
 ---
 
-### 🔹 SS10 — Data Exfiltration
+### 🔹 SS9 — Data Exfiltration
 ![SS9](screenshots/SS9_data_exfiltration.png)
 
 Displays significant outbound data transfer (~19.8 MB) to attacker IP **40.80.148.42**, confirming successful data exfiltration.
