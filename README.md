@@ -226,7 +226,7 @@ SOC-BOTS-v1-Attack-Investigation/
 │   ├── BOTS_Attack_Report.docx
 │
 ├── screenshots/
-│   ├── SS1_attacker_ip.png
+│   ├── SS1_raw_suricata_dns_log.png
 │   ├── SS2_uri_scan.png
 │   ├── SS3_bruteforce.png
 │   ├── SS4_credentials.png
