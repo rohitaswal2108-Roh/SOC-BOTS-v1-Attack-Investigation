@@ -94,6 +94,74 @@ The objective of this project is to demonstrate practical SOC analyst skills inc
 - Confirms successful data theft  
 
 ---
+---
+
+## 📸 Investigation Evidence (Screenshots)
+
+### 🔹 SS1 — Raw Suricata DNS Logs
+![SS1](screenshots/SS1_raw_suricata_dns_log.png)
+
+Shows raw network logs ingested into Splunk from Suricata IDS. Confirms visibility into DNS traffic and validates data source integrity.
+
+---
+
+### 🔹 SS2 — Sourcetype Distribution
+![SS2](screenshots/SS2_sourcetype_distribution.png)
+
+Displays distribution of log sources within the dataset. Highlights key data sources such as `stream:http`, `suricata`, and `WinEventLog`.
+
+---
+
+### 🔹 SS3 — Top Source IPs (Attacker Identification)
+![SS3](screenshots/SS3_top_src_ip.png)
+
+Identifies the most active source IP addresses. External IP **40.80.148.42** stands out as the primary attacker.
+
+---
+
+### 🔹 SS4 — URI Activity Distribution (Reconnaissance)
+![SS4](screenshots/SS4_uri_activity_distribution.png)
+
+Shows heavily accessed endpoints by the attacker. Indicates reconnaissance activity targeting Joomla components and sensitive files.
+
+---
+
+### 🔹 SS5 — Brute Force Login Attempts
+![SS5](screenshots/SS5_bruteforce_login_attempts.png)
+
+Displays HTTP POST requests to the Joomla admin login page. Confirms brute force activity with successful login attempts (HTTP 200).
+
+---
+
+### 🔹 SS6 — Credential Extraction
+![SS6](screenshots/SS6_credentials_extracted.png)
+
+Captured POST form data revealing compromised credentials:
+- Username: `admin`
+- Password: `batman`
+
+---
+
+### 🔹 SS7 — Post-Exploitation Activity
+![SS7](screenshots/SS7_post_exploitation_activity.png)
+
+Shows attacker activity after login, including file browsing and command execution via Joomla components. Indicates successful system compromise.
+
+---
+
+### 🔹 SS8 — Command & Control (C2) Communication
+![SS8](screenshots/SS8_c2_agent_communication.png)
+
+Highlights repeated requests to `/joomla/agent.php` from IP **23.22.63.114**, confirming C2 communication with the deployed web shell.
+
+---
+
+### 🔹 SS10 — Data Exfiltration
+![SS9](screenshots/SS9_data_exfiltration.png)
+
+Displays significant outbound data transfer (~19.8 MB) to attacker IP **40.80.148.42**, confirming successful data exfiltration.
+
+---
 
 ## 🧩 Attack Timeline
 
