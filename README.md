@@ -224,7 +224,6 @@ SOC-BOTS-v1-Attack-Investigation/
 │
 ├── report/
 │   ├── BOTS_Attack_Report.docx
-│   └── BOTS_Attack_Report.pdf
 │
 ├── screenshots/
 │   ├── SS1_attacker_ip.png
