@@ -60,8 +60,6 @@ The objective of this project is to demonstrate practical SOC analyst skills inc
 - Generated **17,547 HTTP requests**
 - Identified as primary attacker
 
----
-
 ### 🔍 2. Reconnaissance Activity
 - Target: Joomla CMS (`/joomla/`)
 - Heavy scanning on:
@@ -71,40 +69,29 @@ The objective of this project is to demonstrate practical SOC analyst skills inc
   - `/windows/win.ini`
   - `/boot.ini`
 
----
-
 ### 🔍 3. Brute Force Attack
-- Multiple POST requests to admin login page
-- Successful authentication observed (HTTP 200 responses)
-- Confirms brute force attack success
-
----
+- Multiple POST requests to admin login page  
+- Successful authentication observed (HTTP 200 responses)  
+- Confirms brute force attack success  
 
 ### 🔍 4. Credential Compromise
-- Username: **admin**
-- Password: **batman**
-- Extracted from HTTP POST form data
-
----
+- Username: **admin**  
+- Password: **batman**  
+- Extracted from HTTP POST form data  
 
 ### 🔍 5. Web Shell Deployment
-- PHP web shell uploaded via Joomla installer
-- File: `/joomla/agent.php`
-- Obfuscated payload detected (`eval`, `base64_decode`, `gzuncompress`)
-
----
+- PHP web shell uploaded via Joomla installer  
+- File: `/joomla/agent.php`  
+- Obfuscated payload detected (`eval`, `base64_decode`, `gzuncompress`)  
 
 ### 🔍 6. Command & Control (C2)
-- Secondary IP: **23.22.63.114**
-- ~194 requests to `/joomla/agent.php`
-- Rapid beaconing behaviour (~100–400ms intervals)
-
----
+- Secondary IP: **23.22.63.114**  
+- ~194 requests to `/joomla/agent.php`  
+- Rapid beaconing behaviour (~100–400ms intervals)  
 
 ### 🔍 7. Data Exfiltration
-- ~**19.8 MB** data transferred to attacker IP **40.80.148.42**
-- Confirms successful data theft
-- Secondary IP used for persistent communication
+- ~**19.8 MB** data transferred to attacker IP **40.80.148.42**  
+- Confirms successful data theft  
 
 ---
 
@@ -156,8 +143,13 @@ index=botsv1 uri_path="/joomla/agent.php"
 index=botsv1 dest_ip=192.168.250.70
 | stats sum(bytes_out) by src_ip
 | sort -sum(bytes_out)
+```
 
+---
 
+## 📁 Repository Structure
+
+```
 SOC-BOTS-v1-Attack-Investigation/
 │
 ├── README.md
@@ -178,19 +170,25 @@ SOC-BOTS-v1-Attack-Investigation/
 │
 └── queries/
     └── detection_queries.spl
+```
 
-🧾 Report
+---
 
-A detailed SOC-style investigation report is available in the /report directory.
+## 🧾 Report
 
-👨‍💻 Author
+A detailed SOC-style investigation report is available in the `/report` directory.
 
-Rohit Aswal
-MSc Cybersecurity, Threat Intelligence & Digital Forensics — University of Salford
-SOC Analyst | Threat Hunting | Digital Forensics
+---
 
-🔗 LinkedIn: https://www.linkedin.com/in/rohit-aswal08
+## 👨‍💻 Author
 
-🔗 GitHub: https://github.com/rohitaswal2108-Roh
+**Rohit Aswal**  
+MSc Cybersecurity, Threat Intelligence & Digital Forensics — University of Salford  
+SOC Analyst | Threat Hunting | Digital Forensics  
+
+🔗 LinkedIn: https://www.linkedin.com/in/rohit-aswal08  
+🔗 GitHub: https://github.com/rohitaswal2108-Roh  
+
+---
 
 ⚠️ This project is based on simulated attack data from the Splunk BOTS v1 dataset and is intended for educational purposes only.
