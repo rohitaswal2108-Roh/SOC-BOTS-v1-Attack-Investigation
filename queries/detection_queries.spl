@@ -1,0 +1,61 @@
+# SOC Attack Investigation — Splunk BOTS v1
+# Analyst: Rohit Aswal
+# Dataset: BOTS v1
+
+# --------------------------------------------------
+# 1. Attacker Identification
+# --------------------------------------------------
+index=botsv1 sourcetype=stream:http
+| stats count by src_ip
+| sort -count
+
+# --------------------------------------------------
+# 2. Reconnaissance / URI Scan Analysis
+# --------------------------------------------------
+index=botsv1 sourcetype=stream:http src_ip=40.80.148.42
+| stats count by uri_path
+| sort -count
+| head 20
+
+# --------------------------------------------------
+# 3. Brute Force Detection
+# --------------------------------------------------
+index=botsv1 sourcetype=stream:http src_ip=40.80.148.42 uri_path="/joomla/administrator/index.php"
+| stats count by http_method, status
+| sort -count
+
+# --------------------------------------------------
+# 4. Credential Extraction
+# --------------------------------------------------
+index=botsv1 sourcetype=stream:http src_ip=40.80.148.42 uri_path="/joomla/administrator/index.php" http_method=POST
+| table _time, src_ip, dest_ip, form_data
+| sort _time
+
+# --------------------------------------------------
+# 5. Web Shell Upload / Post-Compromise Activity
+# --------------------------------------------------
+index=botsv1 sourcetype=stream:http src_ip=40.80.148.42
+| table _time, src_ip, uri_path, form_data
+| sort _time
+
+# --------------------------------------------------
+# 6. C2 Identification
+# --------------------------------------------------
+index=botsv1 sourcetype=stream:http dest_ip=192.168.250.70
+| stats count by src_ip, uri_path
+| sort -count
+| head 20
+
+# --------------------------------------------------
+# 7. Web Shell / Agent Callback Detection
+# --------------------------------------------------
+index=botsv1 sourcetype=stream:http dest_ip=192.168.250.70 uri_path="/joomla/agent.php"
+| table _time, src_ip, uri_query, form_data
+| sort _time
+
+# --------------------------------------------------
+# 8. Data Exfiltration Analysis
+# --------------------------------------------------
+index=botsv1 sourcetype=stream:http dest_ip=192.168.250.70
+| stats sum(bytes_out) as total_bytes_out, sum(bytes_in) as total_bytes_in by src_ip
+| sort -total_bytes_out
